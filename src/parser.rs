@@ -10,7 +10,7 @@ pub(crate) enum Operator {
 
 #[derive(Debug)]
 pub(crate) enum Expression {
-    NumberLiteral(i32),
+    NumberLiteral(f32),
     BinaryExpression(Box<Expression>, Operator, Box<Expression>)
 }
 

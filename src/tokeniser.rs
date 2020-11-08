@@ -2,7 +2,7 @@
 #[derive(Debug, Copy, Clone)]
 pub(crate) enum TokenKind {
     Operator(TokenOpcode),
-    Number(i32),
+    Number(f32),
 }
 
 impl Into<Option<TokenOpcode>> for TokenKind {
@@ -14,8 +14,8 @@ impl Into<Option<TokenOpcode>> for TokenKind {
     }
 }
 
-impl Into<Option<i32>> for TokenKind {
-    fn into(self) -> Option<i32> {
+impl Into<Option<f32>> for TokenKind {
+    fn into(self) -> Option<f32> {
         match self {
             TokenKind::Number(n) => Some(n),
             _ => None,
@@ -51,7 +51,7 @@ impl Tokeniser {
                 self.tokens.push(TokenKind::Operator(op));
             }
             if self.is_int(&String::from(x)) {
-                let n = x.parse::<i32>().unwrap();
+                let n = x.parse::<f32>().unwrap();
                 self.tokens.push(TokenKind::Number(n));
             }
         }
